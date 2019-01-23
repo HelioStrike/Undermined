@@ -168,6 +168,18 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 98a9544a95f5c4f849e41b88fec77b18, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7b8a1b9c4862a48809e8f073ada81c73, type: 2}
+    - target: {fileID: 9500000, guid: 98a9544a95f5c4f849e41b88fec77b18, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100060, guid: 98a9544a95f5c4f849e41b88fec77b18, type: 3}
+      propertyPath: m_Name
+      value: Model
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98a9544a95f5c4f849e41b88fec77b18, type: 3}
   m_IsPrefabAsset: 0
@@ -176,20 +188,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100060, guid: 98a9544a95f5c4f849e41b88fec77b18,
     type: 3}
   m_PrefabInternal: {fileID: 1949426}
---- !u!114 &1949428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1949427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14914291a5b0f4b909d1fe447dc073c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  jumpForce: 350
-  jumpGap: 0.3
 --- !u!4 &1949432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400060, guid: 98a9544a95f5c4f849e41b88fec77b18,
@@ -402,6 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
+  - component: {fileID: 534669906}
   - component: {fileID: 534669903}
   m_Layer: 0
   m_Name: Main Camera
@@ -463,13 +462,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -50, y: 3.8600004, z: -1.3599968}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.2720011, y: 2.21, z: -10.0000305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1949432}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &534669906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a574260f30346459b0699a7159b14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &623650474
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,6 +512,7 @@ MonoBehaviour:
   speed: 4
   jumpForce: 350
   jumpGap: 0.3
+  model: {fileID: 1949427}
 --- !u!54 &623650476
 Rigidbody:
   m_ObjectHideFlags: 0
