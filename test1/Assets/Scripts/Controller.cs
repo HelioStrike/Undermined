@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,12 +35,23 @@ public class Controller : MonoBehaviour {
 		newDir = (horizontal > 0);
 		if(horizontal != 0 && newDir != currDir) {
         	transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
+			anim.Play("Walk",0,0.1f);
 			currDir = newDir;
 		}
 
 		rb.velocity = new Vector3(horizontal*speed,rb.velocity.y,0);
-		if(horizontal != 0 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Walk")) {
-			anim.Play("Walk",0,0.1f);
+
+		if(vertical != 0) {
+			if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+			{
+				anim.Play("Jump",0,0.1f);
+			}
+		}
+		else if(horizontal != 0) {
+			if(Math.Abs(rb.velocity.y) < 0.00001 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+			{
+				anim.Play("Walk",0,0.1f);
+			}
 		}
 
 		if(vertical > 0 && canJump == true && jumpsLeft > 0) {
