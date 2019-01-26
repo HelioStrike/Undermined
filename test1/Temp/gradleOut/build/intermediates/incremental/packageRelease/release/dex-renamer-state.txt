@@ -1,0 +1,4 @@
+#Sat Jan 26 16:54:32 IST 2019
+base.0=/home/krypt/myStuff/Unity/Undermined/test1/Temp/gradleOut/build/intermediates/transforms/dex/release/0
+path.0=classes.dex
+renamed.0=classes.dex

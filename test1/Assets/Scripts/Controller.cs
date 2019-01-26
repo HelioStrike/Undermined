@@ -7,7 +7,7 @@ public class Controller : MonoBehaviour {
 
 	private Rigidbody rb;
 	public float speed;
-	public float jumpForce;
+	public float jumpSpeed;
 	private long lastJump = 0;
 	private int jumpsLeft = 2;
 	private bool canJump = true;
@@ -15,12 +15,18 @@ public class Controller : MonoBehaviour {
 	public GameObject model;
 	private Animator anim;
 	private float horizontal, vertical;
-	private bool currDir = true, newDir; //
+	private bool currDir = true, newDir;
+	private JoyButton leftButton;
+	private JoyButton rightButton;
+	private JoyButton jumpButton;
 
 	// Use this for initialization
 	void Start () {
 		rb = this.GetComponent<Rigidbody>();
 		anim = model.GetComponent<Animator>();
+		leftButton = GameObject.Find("LeftButton").GetComponent<JoyButton>();
+		rightButton = GameObject.Find("RightButton").GetComponent<JoyButton>();
+		jumpButton = GameObject.Find("JumpButton").GetComponent<JoyButton>();
 	}
 	
 	// Update is called once per frame
@@ -29,13 +35,12 @@ public class Controller : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		horizontal = Input.GetAxis("Horizontal");
-		vertical = Input.GetAxis("Vertical");
+		horizontal = rightButton.value - leftButton.value;
+		vertical = jumpButton.value;
 
 		newDir = (horizontal > 0);
 		if(horizontal != 0 && newDir != currDir) {
         	transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
-			anim.Play("Walk",0,0.1f);
 			currDir = newDir;
 		}
 
@@ -48,9 +53,9 @@ public class Controller : MonoBehaviour {
 			}
 		}
 		else if(horizontal != 0) {
-			if(Math.Abs(rb.velocity.y) < 0.00001 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+			if(Math.Abs(rb.velocity.y) < 0.0001 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
 			{
-				anim.Play("Walk",0,0.1f);
+				anim.Play("Walk",0,0.3f);
 			}
 		}
 
@@ -62,7 +67,7 @@ public class Controller : MonoBehaviour {
 	}
 
 	void jump() {
-		rb.AddForce(new Vector3(0,jumpForce, 0));
+		rb.velocity = new Vector3(horizontal*speed,jumpSpeed,0);
 		canJump = false;
 	}
 
